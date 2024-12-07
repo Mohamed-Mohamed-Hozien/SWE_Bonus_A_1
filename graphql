@@ -1,11 +1,16 @@
-LibraryAPI/
+Repo/
 ├── app/
-│   ├── __init__.py      # Initializes the Flask app
-│   ├── routes.py        # All the API routes
-│   ├── models.py        # Book model and data structure
-│   └── utils.py         # Helper functions (e.g., validation)
-├── .github/workflows/  # For GitHub Actions CI/CD workflows
-├── Dockerfile           # Docker instructions for containerization
-├── docker-compose.yml   # To manage multiple containers (if needed)
-├── README.md            # Instructions on how to run the project
-└── requirements.txt     # Python dependencies (Flask, Swagger, etc.)
+│   ├── __init__.py      
+│   ├── routes.py        
+│   ├── models.py        
+│   └── utils.py         
+│   ├──static/
+│   ├──────── swagger.json
+├── .github/workflows/
+│   ├── component-build.yml     
+│   ├── deployment.yml        
+│   ├── pre-merge.yml        
+
+├── Dockerfile           
+├── docker-compose.yml
+└── requirements.txt     
