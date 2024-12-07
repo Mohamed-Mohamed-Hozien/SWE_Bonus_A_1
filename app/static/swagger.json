@@ -1,0 +1,139 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Library Management API",
+      "description": "API for managing library books"
+    },
+    "paths": {
+      "/books": {
+        "post": {
+          "summary": "Add a new book",
+          "description": "Adds a new book to the library",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Book object that needs to be added to the library",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Book"
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "Book added successfully",
+              "schema": {
+                "$ref": "#/definitions/Book"
+              }
+            },
+            "400": {
+              "description": "Invalid input"
+            }
+          }
+        },
+        "get": {
+          "summary": "Get all books",
+          "description": "Retrieves a list of all books in the library",
+          "responses": {
+            "200": {
+              "description": "List of all books",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Book"
+                }
+              }
+            }
+          }
+        }
+      },
+      "/books/{isbn}": {
+        "put": {
+          "summary": "Update book by ISBN",
+          "description": "Updates the details of an existing book",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "isbn",
+              "required": true,
+              "type": "string",
+              "description": "ISBN of the book to update"
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Updated book object",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Book"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Book updated successfully",
+              "schema": {
+                "$ref": "#/definitions/Book"
+              }
+            },
+            "404": {
+              "description": "Book not found"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Delete book by ISBN",
+          "description": "Deletes an existing book by its ISBN",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "isbn",
+              "required": true,
+              "type": "string",
+              "description": "ISBN of the book to delete"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Book deleted successfully"
+            },
+            "404": {
+              "description": "Book not found"
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "Book": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "Clean Code"
+          },
+          "author": {
+            "type": "string",
+            "example": "Robert C. Martin"
+          },
+          "published_year": {
+            "type": "integer",
+            "format": "int32",
+            "example": 2008
+          },
+          "isbn": {
+            "type": "string",
+            "example": "9780132350884"
+          },
+          "genre": {
+            "type": "string",
+            "example": "Software Engineering"
+          }
+        },
+        "required": ["title", "author", "published_year", "isbn"]
+      }
+    }
+  }
+  

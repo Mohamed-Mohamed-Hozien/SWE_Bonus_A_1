@@ -1,0 +1,25 @@
+# Core dependencies
+Flask==2.3.2
+Flask-RESTx==1.1.0
+psycopg2-binary==2.9.7
+
+# Database support
+Flask-SQLAlchemy==3.0.0
+
+# Environment and configuration
+python-dotenv==1.0.0
+
+# Production WSGI server
+gunicorn==20.1.0
+
+# Testing and validation
+pytest==7.4.0
+requests==2.31.0
+
+# Documentation support (Swagger UI)
+swagger-ui-bundle==0.0.9
+flask_swagger_ui==3.36.0
+
+# Linting and formatting (for CI/CD)
+black==23.9.1
+pylint==2.17.5
