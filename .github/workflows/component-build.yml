@@ -1,0 +1,47 @@
+name: Component Build Workflow
+
+on:
+  push:
+    branches:
+      - backend
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      db:
+        image: postgres:latest
+        ports:
+          - "5432:5432"
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: library_db
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run Unit Tests
+      run: |
+        pytest --disable-warnings
+
+    - name: Run Linter (flake8)
+      run: |
+        pip install flake8
+        flake8 .
+
+    - name: Build Application
+      run: |
+        docker build -t library-api:latest .
